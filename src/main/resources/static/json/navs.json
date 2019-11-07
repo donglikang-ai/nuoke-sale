@@ -1,0 +1,49 @@
+{
+	"contentManagement": [
+		{
+			"title": "维修人员管理",
+			"icon": "icon-icon10",
+			"href": "/repairman/index",
+			"spread": false
+		},
+		{
+			"title": "设备管理",
+			"icon": "icon-mokuai",
+			"href": "/terminal/index",
+			"spread": false
+		},
+		{
+			"title": "故障类型管理",
+			"icon": "icon-caidan",
+			"href": "/fault/index",
+			"spread": false
+		},
+		{
+			"title": "订单管理",
+			"icon": "icon-oschina",
+			"href": "/order/index",
+			"spread": false
+		},
+		{
+			"title": "订单报表",
+			"icon": "icon-text",
+			"href": "/report/index",
+			"spread": false
+		},
+		{
+			"title": "公告管理",
+			"icon": "icon-xiugai",
+			"href": "/notice/index",
+			"spread": false
+		},
+		{
+			"title": "轮播图管理",
+			"icon": "&#xe857;",
+			"href": "/pic/index",
+			"spread": false
+		}
+
+	]
+}
+
+

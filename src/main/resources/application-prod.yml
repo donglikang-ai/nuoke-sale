@@ -3,9 +3,9 @@
 spring :
   datasource :
     driverClassName : com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/nuoke?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    url: jdbc:mysql://localhost:3306/pzcatering_end1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
     username: root
-    password: pinzhi_api_1306
+    password: pzkj1306
     hikari:
       maxLifetime: 1765000
       maximumPoolSize: 15

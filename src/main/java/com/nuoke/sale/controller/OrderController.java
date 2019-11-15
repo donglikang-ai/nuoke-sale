@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -63,5 +65,21 @@ public class OrderController {
         userLayerData.setData(userPage.getRecords());
         return userLayerData;
     }
+
+
+    @PostMapping("addSave")
+    @ResponseBody
+//    @SysLog("保存新增系统用户数据")
+    public RestResponse add(@RequestBody Order order) {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        order.setCreateDate(simpleDateFormat.format(new Date()));
+        if (iOrderService.insert(order)) {
+            return RestResponse.success();
+        }
+
+        return RestResponse.failure("保存成功！");
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.nuoke.sale.model;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
@@ -15,13 +16,17 @@ public class Order {
     private String name;
     private String mobile;
     private String address;
+    @TableField("terminal_name")
     private String terminalName;
+    @TableField("fault_name")
     private String faultName;
     private String faultInfo;
     private int status;
     private String repairmanId;
+    @TableField("repairman_name")
     private String repairmanName;
     private String repairmanTel;
+    @TableField("create_date")
     private String createDate;//创建时间
     private String doDate;//处理时间
     private String closeDate;//处理完成时间

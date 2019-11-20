@@ -21,7 +21,7 @@ public class Order {
     @TableField("fault_name")
     private String faultName;
     private String faultInfo;
-    private int status;
+    private int status;//0-新订单 1-处理中  2-已完成
     private String repairmanId;
     @TableField("repairman_name")
     private String repairmanName;
@@ -30,6 +30,15 @@ public class Order {
     private String createDate;//创建时间
     private String doDate;//处理时间
     private String closeDate;//处理完成时间
+    private String openid;
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
 
     public String getFaultInfo() {
         return faultInfo;

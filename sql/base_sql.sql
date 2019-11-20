@@ -43,6 +43,7 @@ CREATE TABLE `sys_notice`  (
 DROP TABLE IF EXISTS `sys_order`;
 CREATE TABLE `sys_order`  (
                             `id` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+                            `openid` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
                             `terminal_type` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
                             `fault_type` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
                             `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,

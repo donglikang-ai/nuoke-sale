@@ -57,7 +57,7 @@ public class OrderController {
         if (!map.isEmpty()) {
             String keys = (String) map.get("key");
             if (!StringUtils.isEmpty(keys)) {
-                userEntityWrapper.like("name", keys);
+                userEntityWrapper.like("status", keys);
             }
         }
         Page<Order> userPage = iOrderService.selectPage(new Page<>(page, limit), userEntityWrapper);
@@ -82,4 +82,19 @@ public class OrderController {
     }
 
 
+    @PostMapping("close")
+    @ResponseBody
+    public RestResponse close(@RequestParam(value = "id", required = false) String id) {
+
+
+        if (id == null) {
+            return RestResponse.failure("参数错误");
+        }
+
+        if (iOrderService.updateForSet("status=2", new EntityWrapper<Order>().eq("id", id))) {
+            return RestResponse.success();
+        }
+
+        return RestResponse.failure("关闭失败!");
+    }
 }

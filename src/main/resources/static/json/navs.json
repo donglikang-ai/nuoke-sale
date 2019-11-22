@@ -36,13 +36,7 @@
 			"href": "/notice/index",
 			"spread": false
 		}
-//	,
-//		{
-//			"title": "轮播图管理",
-//			"icon": "&#xe857;",
-//			"href": "/pic/index",
-//			"spread": false
-//		}
+
 
 	]
 }

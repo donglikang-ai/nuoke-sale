@@ -15,7 +15,7 @@ layui.use(['form','layer'],function(){
             success:function(res){
                 layer.close(index);
                 if(res.success){
-                    parent.layer.msg("添加成功!",{time:1500},function(){
+                    parent.layer.msg("保存成功!",{time:1500},function(){
                         //刷新父页面
                         parent.location.reload();
                     });
@@ -25,7 +25,7 @@ layui.use(['form','layer'],function(){
             },
             error:function(){
                 layer.close(index);
-                parent.layer.msg("添加失败!",{time:1500});
+                parent.layer.msg("保存成功!",{time:1500});
             }
         });
         return false;

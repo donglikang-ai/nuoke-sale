@@ -16,6 +16,7 @@ import org.springframework.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Author:dlkang
@@ -64,22 +65,25 @@ public class RepairManController {
 
     @PostMapping("addSave")
     @ResponseBody
-//    @SysLog("保存新增系统用户数据")
     public RestResponse add(@RequestBody RepairMan repairMan) {
 
-        if (iRepairService.insert(repairMan)) {
-            return RestResponse.success();
+        if (StringUtils.isEmpty(repairMan.getId())) {
+            if (iRepairService.insert(repairMan)) {
+                return RestResponse.success();
+            }
+        } else {
+            if (iRepairService.updateById(repairMan)) {
+                return RestResponse.success();
+            }
         }
 
-        return RestResponse.failure("添加失败!");
+
+        return RestResponse.failure("保存失败!");
     }
-
-
 
 
     @PostMapping("editSave")
     @ResponseBody
-//    @SysLog("保存新增系统用户数据")
     public RestResponse edit(@RequestBody RepairMan repairMan) {
 
         if (iRepairService.updateById(repairMan)) {
@@ -87,5 +91,14 @@ public class RepairManController {
         }
 
         return RestResponse.failure("添加失败!");
+    }
+
+
+    @GetMapping("mansList")
+    @ResponseBody
+    public RestResponse mansList() {
+
+
+        return RestResponse.success().setData(iRepairService.selectList(new EntityWrapper<>()));
     }
 }

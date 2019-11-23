@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.nuoke.sale.model.Fault;
 import com.nuoke.sale.model.Order;
+import com.nuoke.sale.model.RepairMan;
 import com.nuoke.sale.service.IFaultService;
 import com.nuoke.sale.service.IOrderService;
+import com.nuoke.sale.service.IRepairService;
 import com.nuoke.sale.util.LayerData;
 import com.nuoke.sale.util.RestResponse;
 import org.slf4j.Logger;
@@ -33,6 +35,8 @@ public class OrderController {
 
     @Autowired
     private IOrderService iOrderService;
+    @Autowired
+    private IRepairService iRepairService;
 
 
     @GetMapping("/index")
@@ -44,6 +48,7 @@ public class OrderController {
     public String add() {
         return "order/add";
     }
+
 
 
     @PostMapping("/list")
@@ -69,7 +74,6 @@ public class OrderController {
 
     @PostMapping("addSave")
     @ResponseBody
-//    @SysLog("保存新增系统用户数据")
     public RestResponse add(@RequestBody Order order) {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -96,5 +100,25 @@ public class OrderController {
         }
 
         return RestResponse.failure("关闭失败!");
+    }
+
+    @PostMapping("assign")
+    @ResponseBody
+    public RestResponse assignOrder(@RequestBody Order order){
+
+        Order entity = iOrderService.selectById(order.getId());
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        RepairMan man = iRepairService.selectById(order.getRepairmanId());
+        entity.setDoDate(sdf.format(new Date()));
+        entity.setRepairmanName(order.getRepairmanName());
+        entity.setRepairmanName(man.getName());
+        entity.setRepairmanTel(man.getMobile());
+        entity.setStatus(1);
+
+        iOrderService.updateById(entity);
+
+        return RestResponse.success();
     }
 }

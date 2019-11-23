@@ -1,12 +1,12 @@
 
 #tomcat config
 server:
-  port: 52333
+  port: 8888
   #servlet :
   #  context-path : /demo
 spring:
   profiles:
-    active: prod
+    active: dev
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html

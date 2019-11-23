@@ -59,6 +59,7 @@ layui.use(['form','layer','table','laytpl'],function(){
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
+                    body.find(".id").val(edit.id);
                     body.find(".name").val(edit.name);
                     body.find(".mobile").val(edit.mobile);
                     body.find(".sex input[value="+edit.sex+"]").prop("checked","checked");
@@ -85,27 +86,7 @@ layui.use(['form','layer','table','laytpl'],function(){
         addUser();
     })
 
-    //批量删除
-    $(".delAll_btn").click(function(){
-        var checkStatus = table.checkStatus('userListTable'),
-            data = checkStatus.data,
-            newsId = [];
-        if(data.length > 0) {
-            for (var i in data) {
-                newsId.push(data[i].newsId);
-            }
-            layer.confirm('确定删除选中的用户？', {icon: 3, title: '提示信息'}, function (index) {
-                // $.get("删除文章接口",{
-                //     newsId : newsId  //将需要删除的newsId作为参数传入
-                // },function(data){
-                tableIns.reload();
-                layer.close(index);
-                // })
-            })
-        }else{
-            layer.msg("请选择需要删除的用户");
-        }
-    })
+
 
     //列表操作
     table.on('tool(userList)', function(obj){
@@ -113,6 +94,7 @@ layui.use(['form','layer','table','laytpl'],function(){
             data = obj.data;
 
         if(layEvent === 'edit'){ //编辑
+            alert(data.id);
             addUser(data);
         }else if(layEvent === 'usable'){ //启用禁用
             var _this = $(this),

@@ -50,7 +50,6 @@ public class OrderController {
     }
 
 
-
     @PostMapping("/list")
     @ResponseBody
     public LayerData<Order> list(@RequestParam(value = "page", defaultValue = "1") Integer page,
@@ -94,21 +93,23 @@ public class OrderController {
         if (id == null) {
             return RestResponse.failure("参数错误");
         }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Order entity = iOrderService.selectById(id);
+        entity.setStatus(2);
+        entity.setCloseDate(sdf.format(new Date()));
 
-        if (iOrderService.updateForSet("status=2", new EntityWrapper<Order>().eq("id", id))) {
-            return RestResponse.success();
-        }
+        iOrderService.updateById(entity);
 
-        return RestResponse.failure("关闭失败!");
+        return RestResponse.success();
     }
 
     @PostMapping("assign")
     @ResponseBody
-    public RestResponse assignOrder(@RequestBody Order order){
+    public RestResponse assignOrder(@RequestBody Order order) {
 
         Order entity = iOrderService.selectById(order.getId());
 
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         RepairMan man = iRepairService.selectById(order.getRepairmanId());
         entity.setDoDate(sdf.format(new Date()));

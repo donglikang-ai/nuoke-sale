@@ -107,6 +107,14 @@ public class SmallController {
     }
 
 
+    @PostMapping("orderInfo")
+    public RestResponse getOrders(@RequestBody OrderGet orderGet) {
+
+        Order order = iOrderService.selectById(orderGet.getId());
+
+        return RestResponse.success().setData(order);
+    }
+
     @GetMapping("faults")
     public RestResponse getFaults() {
 

@@ -101,7 +101,8 @@ public class OrderController {
         entity.setCloseDate(sdf.format(new Date()));
 
         iOrderService.updateById(entity);
-
+        Order order = iOrderService.selectById(id);
+        new Thread(() -> TemplateUtils.templateSend(order)).start();
         return RestResponse.success();
     }
 
@@ -122,6 +123,7 @@ public class OrderController {
 
         iOrderService.updateById(entity);
 
+        new Thread(() -> TemplateUtils.templateSend(entity)).start();
         return RestResponse.success();
     }
 }

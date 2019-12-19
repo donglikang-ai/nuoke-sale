@@ -11,6 +11,7 @@ import com.nuoke.sale.service.IOrderService;
 import com.nuoke.sale.service.ITerminalService;
 import com.nuoke.sale.util.JsonParse;
 import com.nuoke.sale.util.RestResponse;
+import com.nuoke.sale.util.weix.WeixConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,18 +45,18 @@ public class SmallController {
     private IFaultService iFaultService;
 
 
-
     @PostMapping("getUserInfo")
     public RestResponse getUserInfo(UserinfoGet userinfoGet) throws Exception {
 
-        String AppID = "wxee3951989b8aed65";
-        String AppSecret="d147d43e350210f7e49cd00e8c2be4ae";//这两个都可以从微信公众平台中查找
-        String url = "https://api.weixin.qq.com/sns/jscode2session?appid="
-                + AppID
-                + "&secret="
-                + AppSecret
-                + "&js_code="
-                + userinfoGet.getCode() + "&grant_type=authorization_code";
+//        String url = "https://api.weixin.qq.com/sns/jscode2session?appid="
+//                + WeixConst.AppID
+//                + "&secret="
+//                + WeixConst.AppSecret
+//                + "&js_code="
+//                + userinfoGet.getCode() + "&grant_type=authorization_code";
+
+        String url = String.format(WeixConst.UserInfoUrl, WeixConst.AppID, WeixConst.AppSecret, userinfoGet.getCode());
+
         URL reqURL = new URL(url);
         HttpsURLConnection openConnection = (HttpsURLConnection) reqURL
                 .openConnection();

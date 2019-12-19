@@ -2,10 +2,10 @@
 #dev环境  mysql5.7
 spring :
   datasource :
-    driverClassName : com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/pzcatering_end1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true
+    driverClassName : com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/nuoke?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=UTC
     username: root
-    password: pzkj1306
+    password: nuoke!@#
     hikari:
       maxLifetime: 1765000
       maximumPoolSize: 15

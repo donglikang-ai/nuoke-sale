@@ -10,6 +10,7 @@ import com.nuoke.sale.service.IOrderService;
 import com.nuoke.sale.service.IRepairService;
 import com.nuoke.sale.util.LayerData;
 import com.nuoke.sale.util.RestResponse;
+import com.nuoke.sale.util.weix.TemplateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,10 +79,11 @@ public class OrderController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         order.setCreateDate(simpleDateFormat.format(new Date()));
         if (iOrderService.insert(order)) {
+            new Thread(() -> TemplateUtils.templateSend(order)).start();
             return RestResponse.success();
         }
 
-        return RestResponse.failure("保存成功！");
+        return RestResponse.failure("下单失败！");
     }
 
 

@@ -21,6 +21,7 @@ import org.springframework.web.util.WebUtils;
 
 import javax.servlet.ServletRequest;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
@@ -65,6 +66,7 @@ public class OrderController {
                 userEntityWrapper.like("status", keys);
             }
         }
+        userEntityWrapper.orderAsc(Arrays.asList(new String[]{"status", "createDate"}));
         Page<Order> userPage = iOrderService.selectPage(new Page<>(page, limit), userEntityWrapper);
         userLayerData.setCount(userPage.getTotal());
         userLayerData.setData(userPage.getRecords());

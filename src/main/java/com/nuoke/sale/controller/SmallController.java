@@ -13,12 +13,11 @@ import com.nuoke.sale.util.JsonParse;
 import com.nuoke.sale.util.RestResponse;
 import com.nuoke.sale.util.weix.WeixConst;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.net.ssl.HttpsURLConnection;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -99,7 +98,8 @@ public class SmallController {
 
         List<Order> orders = iOrderService.selectList(new EntityWrapper<Order>()
                 .eq("openid", baseGet.getOpenid())
-                .eq("status", 2));
+                .eq("status", 2)
+                .orderBy("closeDate", false));
         Map<String, Object> map = Maps.newHashMap();
         map.put("orders", Objects.isNull(orders) ? null : orders);
 
@@ -129,4 +129,16 @@ public class SmallController {
 
         return RestResponse.success().setData(map);
     }
+
+
+    @RequestMapping(value = "/pic", produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseBody
+    public byte[] getImage() throws IOException {
+        File file = new File("nuoke_img/nuoke_pic1.png");
+        FileInputStream inputStream = new FileInputStream(file);
+        byte[] bytes = new byte[inputStream.available()];
+        inputStream.read(bytes, 0, inputStream.available());
+        return bytes;
+    }
+
 }

@@ -68,6 +68,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             type: 2,
             content: "/order/add",
             success: function (layero, index) {
+
                 var body = layui.layer.getChildFrame('body', index);
                 if (edit) {
                     body.find(".id").val(edit.id);
@@ -93,30 +94,6 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         $(window).on("resize", function () {
             layui.layer.full(window.sessionStorage.getItem("index"));
         })
-    }
-
-
-
-    function getMansList(){
-        $.ajax({
-            type:"GET",
-            url:"/repairman/mansList",
-            success:function(res){
-                layer.close(index);
-                if(res.success){
-                    parent.layer.msg("处理成功!",{time:1500},function(){
-                        //刷新父页面
-                        parent.location.reload();
-                    });
-                }else{
-                    layer.msg(res.message);
-                }
-            },
-            error:function(){
-                layer.close(index);
-                parent.layer.msg("处理失败!",{time:1500});
-            }
-        });
     }
 
 

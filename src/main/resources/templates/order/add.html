@@ -67,10 +67,8 @@
     <div class="layui-form-item layui-row layui-col-xs12">
         <label class="layui-form-label">上门人员：</label>
         <div class="layui-input-block">
-            <select name="city" lay-verify="" lay-search>
-                <option value="010">layer</option>
-                <option value="021">form</option>
-                <option value="0571" selected>layim</option>
+            <select id="mans" name="repairmanId" class="select" lay-filter="business" lay-verify="required">
+                <option value="" ></option>
             </select>
         </div>
     </div>

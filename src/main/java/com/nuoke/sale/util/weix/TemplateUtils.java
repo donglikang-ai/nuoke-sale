@@ -19,7 +19,7 @@ public class TemplateUtils {
         Map<String, String> param = new HashMap<>();
         param.put("touser", order.getOpenid());
         param.put("template_id", WeixConst.TemplateID);
-        param.put("page", "faultinfo/info?id=" + order.getId());
+        param.put("page", "pages/faultinfo/info?id=" + order.getId());
         param.put("data", getData(order));
         String result = HttpUtils.doPostJson(WeixConst.TemplateUrl + token, getJson(param));
 

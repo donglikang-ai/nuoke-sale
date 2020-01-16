@@ -130,6 +130,17 @@ public class SmallController {
         return RestResponse.success().setData(map);
     }
 
+    @GetMapping("faultCheck")
+    public RestResponse getFaultsCheck() {
+
+        List<Fault> faults = iFaultService.selectList(new EntityWrapper<>());
+
+        Map<String, Object> map = Maps.newHashMap();
+        map.put("checks", faults);
+
+
+        return RestResponse.success().setData(map);
+    }
 
     @RequestMapping(value = "/pic", produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseBody

@@ -1,5 +1,15 @@
 
 #dev环境  mysql5.7
+
+server:
+  port: 80
+  #servlet :
+  #  context-path : /demo
+#  ssl:
+#    key-store: classpath:3270478_roc-saleservice.com.pfx
+#    key-store-password: xJnzcUNl
+#    key-store-type: PKCS12
+
 spring :
   datasource :
     driverClassName : com.mysql.cj.jdbc.Driver

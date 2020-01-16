@@ -1,12 +1,5 @@
 #tomcat config
-server:
-  port: 443
-  #servlet :
-  #  context-path : /demo
-  ssl:
-    key-store: classpath:3270478_roc-saleservice.com.pfx
-    key-store-password: xJnzcUNl
-    key-store-type: PKCS12
+
 spring:
   profiles:
     active: prod

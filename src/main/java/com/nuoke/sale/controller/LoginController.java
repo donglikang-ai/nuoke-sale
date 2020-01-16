@@ -18,6 +18,14 @@ import java.util.Objects;
 @Controller
 public class LoginController {
 
+//    @RequestMapping("login")
+//    public String logins(){
+//
+//
+//        return "login";
+//
+//    }
+
     @RequestMapping("login/main")
     @ResponseBody
     public RestResponse login(String userName, String password) {

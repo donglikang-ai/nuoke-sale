@@ -13,6 +13,8 @@ public class Fault {
     private String id;
     @TableField("fault_name")
     private String faultName;
+    @TableField("fault_info")
+    private String faultInfo;
 
     public String getId() {
         return id;
@@ -28,5 +30,13 @@ public class Fault {
 
     public void setFaultName(String faultName) {
         this.faultName = faultName;
+    }
+
+    public String getFaultInfo() {
+        return faultInfo;
+    }
+
+    public void setFaultInfo(String faultInfo) {
+        this.faultInfo = faultInfo;
     }
 }

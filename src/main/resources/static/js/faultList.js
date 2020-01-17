@@ -25,7 +25,8 @@ layui.use(['form','layer','table','laytpl'],function(){
         id : "userListTable",
         cols : [[
             {type: "checkbox", width:'5%',fixed:"left"},
-            {field: 'faultName', title: '设备名称', width:'75%',   align:"center"},
+            {field: 'faultName', title: '故障码', width:'20%',   align:"center"},
+            {field: 'faultInfo', title: '故障说明', width:'55%',   align:"center"},
             {title: '操作', width:'20%',  templet:'#userListBar',fixed:"right",align:"center"}
         ]]
     });
@@ -55,7 +56,9 @@ layui.use(['form','layer','table','laytpl'],function(){
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
+                    body.find(".id").val(edit.id);
                     body.find(".name").val(edit.faultName);
+                    body.find(".info").val(edit.faultInfo);
                     form.render();
                 }
                 setTimeout(function(){

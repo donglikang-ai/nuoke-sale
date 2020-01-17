@@ -55,6 +55,7 @@ layui.use(['form','layer','table','laytpl'],function(){
             success : function(layero, index){
                 var body = layui.layer.getChildFrame('body', index);
                 if(edit){
+                    body.find(".id").val(edit.id);
                     body.find(".name").val(edit.terminalName);
                     form.render();
                 }

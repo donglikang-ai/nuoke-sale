@@ -81,11 +81,18 @@ public class NoticeController {
 //    @SysLog("保存新增系统用户数据")
     public RestResponse edit(@RequestBody Notice notice) {
 
-        if (iNoticeService.updateById(notice)) {
-            return RestResponse.success();
+
+        if (StringUtils.isEmpty(notice.getId())) {
+            if (iNoticeService.insert(notice)) {
+                return RestResponse.success();
+            }
+        } else {
+            if (iNoticeService.updateById(notice)) {
+                return RestResponse.success();
+            }
         }
 
-        return RestResponse.failure("添加失败!");
+        return RestResponse.failure("保存失败!");
     }
 
 

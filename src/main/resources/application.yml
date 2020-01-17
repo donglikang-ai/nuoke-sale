@@ -2,7 +2,7 @@
 
 spring:
   profiles:
-    active: prod
+    active: dev
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html

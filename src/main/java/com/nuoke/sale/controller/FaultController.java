@@ -67,13 +67,20 @@ public class FaultController {
     @PostMapping("addSave")
     @ResponseBody
 //    @SysLog("保存新增系统用户数据")
-    public RestResponse add(@RequestBody Fault repairMan) {
+    public RestResponse add(@RequestBody Fault fault) {
 
-        if (iFaultService.insert(repairMan)) {
-            return RestResponse.success();
+
+        if (StringUtils.isEmpty(fault.getId())) {
+            if (iFaultService.insert(fault)) {
+                return RestResponse.success();
+            }
+        } else {
+            if (iFaultService.updateById(fault)) {
+                return RestResponse.success();
+            }
         }
 
-        return RestResponse.failure("添加失败!");
+        return RestResponse.failure("保存失败!");
     }
 
 

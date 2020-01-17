@@ -68,11 +68,19 @@ public class TerminalController {
 //    @SysLog("保存新增系统用户数据")
     public RestResponse add(@RequestBody Terminal terminal) {
 
-        if (iTerminalService.insert(terminal)) {
-            return RestResponse.success();
+
+        if (StringUtils.isEmpty(terminal.getId())) {
+            if (iTerminalService.insert(terminal)) {
+                return RestResponse.success();
+            }
+        } else {
+            if (iTerminalService.updateById(terminal)) {
+                return RestResponse.success();
+            }
         }
 
-        return RestResponse.failure("添加失败!");
+        return RestResponse.failure("保存失败!");
+
     }
 
 

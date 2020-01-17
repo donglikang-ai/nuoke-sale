@@ -50,6 +50,7 @@ public class TerminalController {
         Map map = WebUtils.getParametersStartingWith(request, "s_");
         LayerData<Terminal> userLayerData = new LayerData<>();
         EntityWrapper<Terminal> userEntityWrapper = new EntityWrapper<>();
+        userEntityWrapper.orderBy("terminal_name");
         if (!map.isEmpty()) {
             String keys = (String) map.get("key");
             if (!StringUtils.isEmpty(keys)) {

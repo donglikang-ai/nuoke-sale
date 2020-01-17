@@ -66,21 +66,7 @@ public class NoticeController {
     @PostMapping("addSave")
     @ResponseBody
 //    @SysLog("保存新增系统用户数据")
-    public RestResponse add(@RequestBody Notice repairMan) {
-
-        if (iNoticeService.insert(repairMan)) {
-            return RestResponse.success();
-        }
-
-        return RestResponse.failure("添加失败!");
-    }
-
-
-    @PostMapping("editSave")
-    @ResponseBody
-//    @SysLog("保存新增系统用户数据")
-    public RestResponse edit(@RequestBody Notice notice) {
-
+    public RestResponse add(@RequestBody Notice notice) {
 
         if (StringUtils.isEmpty(notice.getId())) {
             if (iNoticeService.insert(notice)) {
@@ -94,6 +80,8 @@ public class NoticeController {
 
         return RestResponse.failure("保存失败!");
     }
+
+
 
 
     @PostMapping("del")

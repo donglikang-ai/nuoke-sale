@@ -51,6 +51,7 @@ public class FaultController {
         Map map = WebUtils.getParametersStartingWith(request, "s_");
         LayerData<Fault> userLayerData = new LayerData<>();
         EntityWrapper<Fault> userEntityWrapper = new EntityWrapper<>();
+        userEntityWrapper.orderBy("fault_name");
         if (!map.isEmpty()) {
             String keys = (String) map.get("key");
             if (!StringUtils.isEmpty(keys)) {

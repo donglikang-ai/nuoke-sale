@@ -119,8 +119,8 @@ public class SmallController {
     @GetMapping("faults")
     public RestResponse getFaults() {
 
-        List<Terminal> terminals = iTerminalService.selectList(new EntityWrapper<>());
-        List<Fault> faults = iFaultService.selectList(new EntityWrapper<>());
+        List<Terminal> terminals = iTerminalService.selectList(new EntityWrapper<Terminal>().orderBy("terminal_name"));
+        List<Fault> faults = iFaultService.selectList(new EntityWrapper<Fault>().orderBy("fault_name"));
 
         Map<String, Object> map = Maps.newHashMap();
         map.put("terminals", Objects.isNull(terminals) ? null : terminals.stream().map(i -> i.getTerminalName()).collect(Collectors.toList()));
@@ -133,7 +133,7 @@ public class SmallController {
     @GetMapping("faultCheck")
     public RestResponse getFaultsCheck() {
 
-        List<Fault> faults = iFaultService.selectList(new EntityWrapper<>());
+        List<Fault> faults = iFaultService.selectList(new EntityWrapper<Fault>().orderBy("fault_name"));
 
         Map<String, Object> map = Maps.newHashMap();
         map.put("checks", faults);
